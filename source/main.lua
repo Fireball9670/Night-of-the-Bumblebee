@@ -11,10 +11,12 @@ local gfx <const> = playdate.graphics
 local sprite <const> = gfx.sprite
 
 local player = Player()
+local particles = Particles()
 
 -- init() runs once at game start
 local function init()
     player:add()
+    particles:add()
 
     showMenu()
 end
