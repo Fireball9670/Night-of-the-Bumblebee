@@ -1,6 +1,7 @@
 import "CoreLibs/object"
 import "CoreLibs/sprites"
 import "CoreLibs/graphics"
+import "CoreLibs/timer"
 
 import "assets"
 import "sprites"
@@ -19,12 +20,24 @@ local function init()
     particles:add()
 
     showMenu()
+
+    playdate.timer.performAfterDelay(1000, function ()
+        -- start animation
+        particles:startAnimation()
+    end)
+
+    playdate.timer.performAfterDelay(4000, function ()
+        -- end anymation
+        particles:endAnimation()
+    end)
+
 end
 
 -- update() runs every frame
 function playdate.update()
     -- update all sprites
     sprite.update()
+    playdate.timer.updateTimers()
 
     if playdate.buttonJustPressed(playdate.kButtonA) then
         hideMenu()
