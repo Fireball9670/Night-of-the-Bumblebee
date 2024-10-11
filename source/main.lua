@@ -18,19 +18,9 @@ local particles = Particles()
 local function init()
     player:add()
     particles:add()
+    player:setParticlesSprite(particles)
 
     showMenu()
-
-    playdate.timer.performAfterDelay(1000, function ()
-        -- start animation
-        particles:startAnimation()
-    end)
-
-    playdate.timer.performAfterDelay(4000, function ()
-        -- end anymation
-        particles:endAnimation()
-    end)
-
 end
 
 -- update() runs every frame

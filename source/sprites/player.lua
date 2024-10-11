@@ -16,6 +16,11 @@ function Player:init()
     velocity = 0
 end
 
+function Player:setParticlesSprite(particlesSprite)
+    assert(type(particlesSprite) == "table")
+    self.particlesSprite = particlesSprite
+end
+
 function Player:update()
     -- update the player
     Player.super.update(self)
@@ -35,6 +40,26 @@ function Player:update()
     local crankPositionRadians = math.rad(crankPosition)
     -- calculate the x and y velocity
     local vX,vY = velocity * math.cos(crankPositionRadians), velocity * math.sin(crankPositionRadians)
+
+    if self.setParticlesSprite then
+        local distanceFromCenter = -33
+
+        local x = self.x + distanceFromCenter * math.cos(crankPositionRadians)
+        local y = self.y + distanceFromCenter * math.sin(crankPositionRadians)
+
+        self.particlesSprite:moveTo(x, y)
+
+        self.particlesSprite:setRotation(crankPosition)
+
+        if playdate.buttonJustPressed(playdate.kButtonA) then
+            self.particlesSprite:startAnimation()
+        end
+        if playdate.buttonJustReleased(playdate.kButtonA) then
+            self.particlesSprite:endAnimation()
+        end
+    end
+
+
 
     self:moveBy(vX, vY)
 
