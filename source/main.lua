@@ -2,6 +2,7 @@ import "CoreLibs/object"
 import "CoreLibs/sprites"
 import "CoreLibs/graphics"
 
+import "assets"
 import "sprites"
 import "menu"
 
