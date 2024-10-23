@@ -9,7 +9,7 @@ gfx.setFontFamily(gfx.getFont(gfx.font.kVariantBold))
 
 -- draw text on image
 gfx.pushContext(imageSpriteTitle)
-gfx.drawTextAligned("Sky Shooter", 100, 60, kTextAlignment.center)
+gfx.drawTextAligned("Night of the Bumblebee", 100, 60, kTextAlignment.center)
 gfx.popContext()
 
 spriteTitle:setImage(imageSpriteTitle:scaledImage(2))
