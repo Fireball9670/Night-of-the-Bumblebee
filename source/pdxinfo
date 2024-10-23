@@ -1,6 +1,6 @@
-name=Sky Shooter
+name=Night of the Bumblebee
 author=Henri Wagener
-description=My First Game
-bundleID=com.henriwagener.skyshooter
-version=v0.0.7-alpha-re1
+description=Game for my uni course "Production of digital media"
+bundleID=com.henriwagener.bumblebee
+version=v0.0.7-alpha
 imagePath=assets/launcher
