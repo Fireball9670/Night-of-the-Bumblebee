@@ -1,4 +1,5 @@
 assets = {
     particles = "assets/particles",
-    ship = "assets/SpaceShip"
+    ship = "assets/SpaceShip",
+    bee = "assets/bee"
 }
