@@ -1,7 +1,7 @@
 local gfx <const> = playdate.graphics
 
 local spriteTitle = gfx.sprite.new()
-local spriteButton = gfx.sprite.spriteWithText("Press A to start!", 400, 240)
+local spriteButton = gfx.sprite.spriteWithText("Press A to fly!", 400, 240)
 
 local imageSpriteTitle = gfx.image.new(200, 120)
 
@@ -17,12 +17,12 @@ spriteTitle:setImage(imageSpriteTitle:scaledImage(2))
 spriteTitle:moveTo(200, 100)
 spriteButton:moveTo(200, 170)
 
-function showMenu()
+function ShowMenu()
     spriteTitle:add()
     spriteButton:add()
 end
 
-function hideMenu()
+function HideMenu()
     spriteTitle:remove()
     spriteButton:remove()
 end

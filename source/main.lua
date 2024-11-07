@@ -6,6 +6,7 @@ import "CoreLibs/timer"
 import "assets"
 import "sprites"
 import "menu"
+import "score"
 
 -- make pointers
 local gfx <const> = playdate.graphics
@@ -16,11 +17,12 @@ local particles = Particles()
 
 -- init() runs once at game start
 local function init()
+    ShowScore()
+    ShowMenu()
+
     player:add()
     particles:add()
     player:setParticlesSprite(particles)
-
-    showMenu()
 end
 
 -- update() runs every frame
@@ -30,9 +32,13 @@ function playdate.update()
     playdate.timer.updateTimers()
 
     if playdate.buttonJustPressed(playdate.kButtonA) then
-        hideMenu()
+        HideMenu()
     end
 
+    if playdate.buttonJustPressed(playdate.kButtonB) then
+        NewScore(100)
+    end
+    DrawScore()
 end
 
 init()

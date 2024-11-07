@@ -2,5 +2,5 @@ name=Night of the Bumblebee
 author=Henri Wagener
 description=Game for my uni course "Production of digital media"
 bundleID=com.henriwagener.bumblebee
-version=v0.0.8-alpha
+version=v0.0.9-alpha
 imagePath=assets/launcher
