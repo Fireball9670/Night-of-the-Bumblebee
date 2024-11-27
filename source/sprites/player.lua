@@ -12,6 +12,7 @@ function Player:init()
     Player.super.init(self, imageSpritePlayer)
 
     self:moveTo(200, 60)
+    self:setCollideRect(0, 0, self:getSize())
 
     velocity = 0
 end
@@ -19,6 +20,10 @@ end
 function Player:setParticlesSprite(particlesSprite)
     assert(type(particlesSprite) == "table")
     self.particlesSprite = particlesSprite
+end
+
+function Player:collisionResponse(other)
+    return gfx.sprite.kCollisionTypeOverlap
 end
 
 function Player:update()
@@ -61,7 +66,16 @@ function Player:update()
 
 
 
-    self:moveBy(vX, vY)
+    local _, _, collisions = self:moveWithCollisions(self.x + vX, self.y + vY)
+
+    for _, collision in pairs(collisions) do
+        local other = collision.other
+
+        if getmetatable(other).class == Flower then
+            other:destroy()
+            NewScore(100)
+        end
+    end
 
     -- wrap around the screen
     self:moveTo(self.x % 400, self.y % 240)

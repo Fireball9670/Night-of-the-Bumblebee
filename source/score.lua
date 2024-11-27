@@ -26,7 +26,4 @@ function DrawScore()
     gfx.popContext()
 
     spriteScore:setImage(imageSpriteScore:scaledImage(2))
-
-    print(currentScore)
-    print(tostring(currentScore))
 end
