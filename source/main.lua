@@ -22,6 +22,7 @@ local flowerSpawner = Spawner(Flower, Flower.spawnRate)
 
 -- init() runs once at game start
 local function init()
+    playdate.display.setInverted(true)
     ShowScore()
     ShowMenu()
 
