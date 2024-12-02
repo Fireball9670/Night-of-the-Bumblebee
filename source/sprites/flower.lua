@@ -2,7 +2,7 @@ local gfx <const> = playdate.graphics
 
 class("Flower").extends(gfx.sprite)
 
-Flower.spawnRate = 0.01
+Flower.spawnRate = 0.05
 
 -- make new sprite
 local imageSpriteFlower = gfx.imagetable.new(assets.flower)
@@ -16,6 +16,8 @@ function Flower:init()
 
     self:moveTo(300, 20)
     self:setCollideRect(0, 0, self:getSize())
+
+    self.lifeTimer = playdate.timer.new(5000, self.destroy, self)
 end
 
 function Flower:destroy()

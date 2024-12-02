@@ -6,8 +6,6 @@ import "CoreLibs/animation"
 
 import "assets"
 import "sprites"
-import "menu"
-import "score"
 import "utils"
 
 -- make pointers
