@@ -44,9 +44,9 @@ function playdate.update()
         HideMenu()
     end
 
-    if playdate.buttonJustPressed(playdate.kButtonB) then
-        NewScore(100)
-    end
+--    if playdate.buttonJustPressed(playdate.kButtonB) then
+--        NewScore(100)
+--    end
     DrawScore()
 end
 
