@@ -5,6 +5,7 @@
 ## How to play without a Playdate console
 
 - Download and install the [SDK](https://play.date/dev/).
+- Download the [latest release](https://github.com/Fireball9670/Night-of-the-Bumblebee/releases).
 - Open the Playdate simulator.
 - Drag the (unzipped) Night-of-the-Bumblebee.pdx folder into the simulator window.
 - Play (Either use the on screen controls, or keyboard and the scrollwheel for the Crank).
