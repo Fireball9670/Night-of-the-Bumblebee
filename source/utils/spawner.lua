@@ -1,4 +1,5 @@
-
+--- @class Spawner : playdate.graphics.sprite
+Spawner = {}
 class("Spawner").extends()
 
 function Spawner:init(spriteClass, spawnRate)

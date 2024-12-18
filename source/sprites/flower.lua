@@ -1,5 +1,7 @@
 local gfx <const> = playdate.graphics
 
+--- @class Flower : playdate.graphics.sprite
+Flower = {}
 class("Flower").extends(gfx.sprite)
 
 Flower.spawnRate = 0.05

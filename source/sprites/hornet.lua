@@ -4,6 +4,8 @@ local imageSpriteHornet = gfx.image.new(assets.hornet)
 
 local velocity
 
+--- @class Hornet : playdate.graphics.sprite
+Hornet = {}
 class("Hornet").extends(gfx.sprite)
 
 function Hornet:init()
