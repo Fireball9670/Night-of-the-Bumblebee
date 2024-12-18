@@ -17,12 +17,22 @@ spriteTitle:setImage(imageSpriteTitle:scaledImage(2))
 spriteTitle:moveTo(200, 100)
 spriteButton:moveTo(200, 170)
 
+local _isMenuShown = false
+
 function ShowMenu()
     spriteTitle:add()
     spriteButton:add()
+
+    _isMenuShown = true
 end
 
 function HideMenu()
     spriteTitle:remove()
     spriteButton:remove()
+
+    _isMenuShown = false
+end
+
+function IsMenuShown()
+    return _isMenuShown
 end

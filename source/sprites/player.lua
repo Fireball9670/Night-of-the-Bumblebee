@@ -1,5 +1,7 @@
 local gfx <const> = playdate.graphics
 
+--- @class Player : playdate.graphics.sprite
+Player = {}
 class("Player").extends(gfx.sprite)
 
 -- make new sprite
@@ -11,20 +13,31 @@ function Player:init()
     -- create the player
     Player.super.init(self, imageSpritePlayer)
 
-    self:moveTo(200, 60)
-    self:setCollideRect(0, 0, self:getSize())
+    Player.instance = self
 
-    velocity = 0
+    self:setCollideRect(0, 0, self:getSize())
 end
 
-function Player:setParticlesSprite(particlesSprite)
-    assert(type(particlesSprite) == "table")
-    self.particlesSprite = particlesSprite
+function Player:add()
+    Player.super.add(self)
+
+    self:moveTo(200, 60)
+    velocity = 0
+    self._isDead = false
 end
 
 function Player:collisionResponse(other)
     return gfx.sprite.kCollisionTypeOverlap
 end
+
+function Player:onDeath()
+    self._isDead = true
+end
+
+function Player:isDead()
+    return self._isDead
+end
+
 
 function Player:update()
     -- update the player
@@ -32,6 +45,7 @@ function Player:update()
 
     -- rotate sprite based on the rotation of the Crank[tm]
     local crankPosition = playdate.getCrankPosition()
+    local crankPositionRadians = math.rad(crankPosition)
     self:setRotation(crankPosition)
 
     -- add velocity when A is pressed
@@ -41,30 +55,8 @@ function Player:update()
         velocity = 0
     end
 
-    -- lua needs angles in radians
-    local crankPositionRadians = math.rad(crankPosition)
     -- calculate the x and y velocity
-    local vX,vY = velocity * math.cos(crankPositionRadians), velocity * math.sin(crankPositionRadians)
-
-    if self.setParticlesSprite then
-        local distanceFromCenter = -33
-
-        local x = self.x + distanceFromCenter * math.cos(crankPositionRadians)
-        local y = self.y + distanceFromCenter * math.sin(crankPositionRadians)
-
-        self.particlesSprite:moveTo(x, y)
-
-        self.particlesSprite:setRotation(crankPosition)
-
-        if playdate.buttonJustPressed(playdate.kButtonA) then
-            self.particlesSprite:startAnimation()
-        end
-        if playdate.buttonJustReleased(playdate.kButtonA) then
-            self.particlesSprite:endAnimation()
-        end
-    end
-
-
+    local vX,vY = GetAngleComponents(crankPositionRadians, velocity)
 
     local _, _, collisions = self:moveWithCollisions(self.x + vX, self.y + vY)
 
@@ -74,6 +66,10 @@ function Player:update()
         if getmetatable(other).class == Flower then
             other:destroy()
             NewScore(100)
+        end
+
+        if getmetatable(other).class == Hornet then
+            self:onDeath()
         end
     end
 

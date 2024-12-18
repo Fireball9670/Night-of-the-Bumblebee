@@ -14,22 +14,31 @@ local sprite <const> = gfx.sprite
 
 -- classes
 local player = Player()
-local particles = Particles()
---local flower = Flower()
 local flowerSpawner = Spawner(Flower, Flower.spawnRate)
+local hornet = Hornet()
 
 -- init() runs once at game start
 local function init()
     playdate.display.setInverted(true)
+    ShowMenu()
+end
+
+function gameStart()
+    HideMenu()
+    gfx.sprite.removeAll()
+    ScoreReset()
     ShowScore()
+    hornet:add()
+    flowerSpawner:start()
+    player:add()
+end
+
+function gameEnd()
     ShowMenu()
 
-    --flower:add()
-
-    player:add()
-    particles:add()
-    player:setParticlesSprite(particles)
-    flowerSpawner:start()
+    player:remove()
+    flowerSpawner:stop()
+    hornet:remove()
 end
 
 -- update() runs every frame
@@ -40,14 +49,15 @@ function playdate.update()
     sprite.update()
     playdate.timer.updateTimers()
 
-    if playdate.buttonJustPressed(playdate.kButtonA) then
-        HideMenu()
+    if IsMenuShown() and playdate.buttonJustPressed(playdate.kButtonA) then
+        gameStart()
     end
 
---    if playdate.buttonJustPressed(playdate.kButtonB) then
---        NewScore(100)
---    end
     DrawScore()
+
+    if not IsMenuShown() and player:isDead() then
+        gameEnd()
+    end
 end
 
 init()
